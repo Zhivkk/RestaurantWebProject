@@ -1,6 +1,6 @@
 package com.RestaurantWebApp.model.entity;
 
-import com.dictionaryapp.model.entity.enums.OrderStatus;
+import com.RestaurantWebApp.model.entity.enums.OrderStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;

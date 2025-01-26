@@ -1,16 +1,12 @@
 package com.RestaurantWebApp.controller;
 
 import com.RestaurantWebApp.config.UserSession;
-import com.RestaurantWebApp.model.dto.RecipeInfoDTO;
 import com.RestaurantWebApp.service.RecipeService;
 import com.RestaurantWebApp.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.List;
-import java.util.Map;
 
 @Controller
 public class HomeController {
@@ -40,34 +36,7 @@ public class HomeController {
             return "redirect:/";
         }
 
-        Map<CategoryName, List<Recipe>> allRecipes =
-                recipeService.findAllByCategory();
 
-        List<RecipeInfoDTO> favourites =
-            userService.findFavourites(userSession.id())
-                .stream()
-                .map(RecipeInfoDTO::new)
-                .toList();
-
-        List<RecipeInfoDTO> cocktails = allRecipes.get(CategoryName.COCKTAIL)
-            .stream()
-            .map(RecipeInfoDTO::new)
-            .toList();
-
-        List<RecipeInfoDTO> mainDishes = allRecipes.get(CategoryName.MAIN_DISH)
-            .stream()
-            .map(RecipeInfoDTO::new)
-            .toList();
-
-        List<RecipeInfoDTO> desserts = allRecipes.get(CategoryName.DESSERT)
-            .stream()
-            .map(RecipeInfoDTO::new)
-            .toList();
-
-        model.addAttribute("cocktailsData", cocktails);
-        model.addAttribute("mainDishesData", mainDishes);
-        model.addAttribute("dessertsData", desserts);
-        model.addAttribute("favouritesData", favourites);
 
         return "home";
     }

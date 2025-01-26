@@ -1,7 +1,7 @@
 package com.RestaurantWebApp.model.entity;
 
-import com.dictionaryapp.model.entity.enums.Category;
-import com.dictionaryapp.model.entity.enums.ProductStatus;
+import com.RestaurantWebApp.model.entity.enums.Category;
+import com.RestaurantWebApp.model.entity.enums.ProductStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
