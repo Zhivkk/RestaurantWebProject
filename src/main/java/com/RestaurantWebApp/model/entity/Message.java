@@ -21,7 +21,7 @@ public class Message {
 
     @Column(nullable = false)
     @ManyToOne
-    private User user;
+    private User user = new User();
 
     @Column(nullable = false)
     private String subject;

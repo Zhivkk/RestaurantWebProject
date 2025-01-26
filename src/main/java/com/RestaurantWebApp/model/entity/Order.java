@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,7 +24,7 @@ public class Order {
 
     @Column(nullable = false)
     @ManyToOne
-    private User user;
+    private User user = new User();
 
     @Column
     @Enumerated(EnumType.STRING)
@@ -31,7 +32,7 @@ public class Order {
 
     @Column
     @OneToMany
-    private List<Product> order;
+    private List<Product> order = new ArrayList<>();
 
     @Column(nullable = false)
     private BigDecimal OrderPrice;
