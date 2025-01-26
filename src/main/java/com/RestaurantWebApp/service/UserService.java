@@ -65,18 +65,5 @@ public class UserService {
         return true;
     }
 
-    @Transactional
-    public List<Recipe> findFavourites(Long id) {
-        return userRepository.findById(id)
-            .map(User::getFavouriteRecipes)
-            .orElseGet(ArrayList::new);
 
-//        Optional<User> byId = userRepository.findById(id);
-//
-//        if (byId.isEmpty()) {
-//            return new ArrayList<>();
-//        }
-//
-//        return byId.get().getFavouriteRecipes();
-    }
 }

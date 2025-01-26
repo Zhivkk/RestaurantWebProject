@@ -45,4 +45,24 @@ public class User {
 
     @Column(nullable = false)
     private LocalDateTime dateOfChange;
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String encode) {
+        this.password = encode;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public long getId() {
+        return id.compareTo(UUID.randomUUID());
+    }
 }
