@@ -33,7 +33,7 @@ public class Product {
     private String description;
 
     @Column (nullable = false)
-    private Map<Ingredient, Double> recipe;
+    private Map<String, Double> recipe; //Име - количество на съставките в рецептата
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String preparation;
