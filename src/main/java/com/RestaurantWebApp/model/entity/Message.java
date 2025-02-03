@@ -19,8 +19,9 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(nullable = false)
+
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user = new User();
 
     @Column(nullable = false)

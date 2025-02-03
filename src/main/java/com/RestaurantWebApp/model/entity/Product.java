@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -33,7 +34,7 @@ public class Product {
     private String description;
 
     @Column (nullable = false)
-    private Map<Ingredient, Double> recipe;
+    private Map <Ingredient, Double> recipe = new HashMap<>();
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String preparation;

@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Fetch;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -22,16 +23,15 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(nullable = false)
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user = new User();
 
     @Column
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
-    @Column
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Product> order = new ArrayList<>();
 
     @Column(nullable = false)
