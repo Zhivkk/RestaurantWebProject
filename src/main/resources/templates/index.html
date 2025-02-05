@@ -1,31 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/commons::head"></head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="/css/common.css">
+  <link rel="stylesheet" type="text/css" href="/css/index.css">
+  <title>Home</title>
+</head>
 <body>
-<header th:replace="fragments/commons::nav"></header>
+<header class="header">
+  <div class="header-inner">
+    <nav class="nav">
+      <a th:href="@{/login}" class="button login">Login</a>
+      <a th:href="@{/register}" class="button register">Register</a>
+    </nav>
+  </div>
+</header>
 <main>
-    <div class="container bg-blur rounded mt-5 ">
-        <h1>Welcome to Bon App-étit</h1>
-        <hr class="my-3 bg-white w-50"/>
-
-        <p class="h4">
-            Introducing the Bon App-étit, your culinary companion for exploring new tastes and connecting with
-            fellow food enthusiasts. This app is all about taking your cooking experience to the next level by offering a
-            wide range of recipes to suit your palate. Browse through hundreds of innovative recipes created by passionate
-            chefs and home cooks. You can add your favorite dishes to your personal recipe collection, share your own
-            culinary creations, and discover exciting flavor combinations. Unleash your inner chef and embark on a
-            gastronomic journey with Bon App-étit!</p>
-        <hr class="my-3 bg-white w-75"/>
-
-        <h3>
-            <a class="text-primary" href="/">Login</a>
-            if you have an account or
-            <a class="text-primary" href="/">Register</a>
-            now and check our recipes.
-        </h3>
-    </div>
+  <div class="logo-container">
+    <a href="/" class="logo-big">
+      <img src="/images/smart-wallet-high-resolution-logo-transparent.png" alt="Logo Image">
+    </a>
+  </div>
 </main>
-<footer th:replace="fragments/commons::footer"></footer>
-</body>
-</html>
+<th:block th:insert="fragments/footer :: footer"></th:block>
+</body></html>
