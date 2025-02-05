@@ -1,5 +1,6 @@
 INQUIRY / Задание
 
+
 Потребители:
 public class User () { // – описва различните видове ползватели
 
@@ -38,6 +39,7 @@ private List<Order> orders = new ArrayList<>();
 private List<Massage> massages = new ArrayList<>();
 }
 
+
 Съставки:
 public class Ingredient (){ //  описва наличностите в склада
 
@@ -51,6 +53,7 @@ LocalDateTime createdOn;
 
 LocalDateTime updatedOn;
 } 
+
 
 Рецепта:
 public class ProductIngredient (){
@@ -66,6 +69,7 @@ private LocalDateTime createdOn;
 
 private LocalDateTime updatedOn;
 }
+
 
 Продукти:
 public class Product { //– описва менюто (храни и напитки)
@@ -97,6 +101,7 @@ private LocalDateTime createdOn;
 private LocalDateTime updatedOn;
 }
 
+
 Поръчки:
 public class Order () { // описва поръчката
 
@@ -124,6 +129,7 @@ private LocalDateTime createdOn;
 private LocalDateTime updatedOn;
 }
 
+
 Количка:
 public class Cart (){ // количка - временно съхранява продуктите от поръчката
 
@@ -140,6 +146,7 @@ private LocalDateTime createdOn;
 
 private LocalDateTime updatedOn;
 }
+
 
 Съобщения:
 public class Message () { // изпращане на съобщение от потребителя до системата
