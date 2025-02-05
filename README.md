@@ -1,62 +1,169 @@
 INQUIRY / Задание
 
+
 Потребители:
-public class User – описва различните видове ползватели
-UUID id;
-String userName; - задължително при регистрация и логване
-String password - задължително при регистрация и логване
-String firstName; - не се изисква при регистрация, а само при редактиране на профила
-String lastName; -  не се изисква при регистрация, а само при редактиране на профила
-String email; - задължително при регистрация
-String phone; - задължително при регистрация
-Enum userStatus; - active, inactive, deleted (енумерация); - въвежда се автоматично от системата
-String role; - admin, user, waiter, client, chef, bartender, caterer …. (енумерация) – client се въвежда автоматично от системата, останалите се променят ръчно от admin
-String photo; - връзка към снимка, снимките могат да са качени тук.
-LocalDateTime creationDate; - дата на регистрация, въвежда се автоматично от системата
-LocalDateTime dateOfChange; - дата на промяна, въвежда се автоматично от системата
+public class User () { // – описва различните видове ползватели
+
+private UUID id;
+
+private String username; // задължително при регистрация и логване
+
+private String firstName; // не се изисква при регистрация, а само при редактиране на профила
+
+private String lastName; //  не се изисква при регистрация, а само при редактиране на профила
+
+private String profilePicture  //  не се изисква при регистрация, а само при редактиране на профила
+
+private String email; // задължително при регистрация
+
+private String password; // задължително при регистрация и логване
+
+private String phone; // задължително при регистрация
+
+private UserRole role; // admin, waiter, client, chef, bartender, caterer …. (енумерация) – client се въвежда автоматично от системата, останалите се променят ръчно от admin
+
+private Country country; // това трябва да се премахне
+
+private boolean isActive;
+
+private LocalDateTime createdOn; // дата на регистрация, въвежда се автоматично от системата
+
+private LocalDateTime updatedOn; // дата на промяна, въвежда се автоматично от системата
+
+@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+@OrderBy("createdOn DESC")
+private List<Order> orders = new ArrayList<>();
+
+@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+@OrderBy("createdOn DESC")
+private List<Massage> massages = new ArrayList<>();
+}
+
 
 Съставки:
-public class Ingredient – описва наличностите в склада
-UUID Id;
-String ingredientName;
+public class Ingredient (){ //  описва наличностите в склада
+
+private UUID Id;
+
+private String ingredientName;
+
 Double ingredientQuantity; - наличното количество в склада
+
 LocalDateTime createdOn;
+
 LocalDateTime updatedOn;
+} 
+
+
+Рецепта:
+public class ProductIngredient (){
+
+private UUID id;
+
+@ManyToOne
+private Product product;
+
+private int quantity;
+
+private LocalDateTime createdOn;
+
+private LocalDateTime updatedOn;
+}
+
 
 Продукти:
-public class Product – описва менюто (храни и напитки)
-UUID id;
-String productName; 
-Enum category; - soup, salad, appetizer, main course, dessert, soft drink, alcohol, others (енумерация)
-String description; - Кратко описание на продукта
-Map (Ingredient, quantity) recipe – съдържа рецептата за продукта (съставка/количество)
-Text preparation; - начин на приготвяне;
-Double grammage; - количество на една порция
-BigDecimal price;
-String picture;
-String productStatus; - available, out of stock,    (енумерация)
-LocalDateTime createdOn;
-LocalDateTime updatedOn;
+public class Product { //– описва менюто (храни и напитки)
+
+private UUID id;
+
+private String productName; 
+
+private Enum category; // soup, salad, appetizer, main course, dessert, soft drink, alcohol, others (енумерация)
+
+private String description; // Кратко описание на продукта
+
+@OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
+@OrderBy("createdOn DESC")
+private List <ProductIngredient> productIngredient = new ArrayList<>(); // съдържа рецептата за продукта (съставка/количество)
+
+private Text preparation; // начин на приготвяне;
+
+private int grammage; // количество на една порция
+
+private BigDecimal price;
+
+private String picture;
+
+private String productStatus; // available, out of stock,    (енумерация)
+
+private LocalDateTime createdOn;
+
+private LocalDateTime updatedOn;
+}
+
 
 Поръчки:
-public class Order – описва поръчката
-User user; - името на клиента (логнатия в системата)
-Enum orderStatus; - for execution, for payment, paid, for delivery, delivered (енумерация)
-Map (Product product, int quantity) order – списък с продуктите в поръчката и техните количества
-BigDecimal price; - обща цена за поръчката
-String addressForDelivery; - може да се раздели на отделни позиции – град, квартал, улица ....
-note;
-LocalDateTime createdOn;
-LocalDateTime updatedOn;
+public class Order () { // описва поръчката
+
+private UUID id;
+
+@ManyToOne
+private User user; // името на клиента (логнатия в системата)
+
+private Enum orderStatus; // for execution, for payment, paid, for delivery, delivered (енумерация)
+
+@OneToMany(fetch = FetchType.EAGER, mappedBy = "order")
+@OrderBy("createdOn DESC")
+private List<Cart> carts = new ArrayList<>();
+
+private BigDecimal price; // обща цена за поръчката
+
+private String addressForDelivery; // може да се раздели на отделни позиции – град, квартал, улица ....
+
+private int tableNumber; // номер ана масата (когато се обслужва от сервитьор)
+
+private String note; //Коментар
+
+private LocalDateTime createdOn;
+
+private LocalDateTime updatedOn;
+}
+
+
+Количка:
+public class Cart (){ // количка - временно съхранява продуктите от поръчката
+
+private UUID id;
+
+@ManyToOne
+private Order order;
+
+private Product product;
+
+private int quantity;
+
+private LocalDateTime createdOn;
+
+private LocalDateTime updatedOn;
+}
+
 
 Съобщения:
-public class Message – изпращане на съобщение от потребителя до системата
-User user; - името на клиента (логнатия в системата)
-String subject;
-Text messageText;
-String messageStatus; written, read, replied, deleted 
-LocalDateTime createdOn;
-LocalDateTime updatedOn;
+public class Message () { // изпращане на съобщение от потребителя до системата
+
+@ManyToOne
+private User user; // името на клиента (логнатия в системата)
+
+private String subject;
+
+private Text messageText;
+
+private Enum messageStatus; //written, read, replied, deleted 
+
+private LocalDateTime createdOn;
+
+private LocalDateTime updatedOn;
+}
 
 
 СТРАНИЦИ:
@@ -65,14 +172,14 @@ LocalDateTime updatedOn;
 3.	Страница за регистрация - userName, email, phone, password
 4.	Страница за промяна на профила - съдържа цялата информация за профила
 5.	Меню – общи приказки с линкове към отделни страници soup, salad, appetizer, main course, dessert, soft drink, alcohol, others
-6.	Soup – галерия със снимки на продуктите с две връзки на всяка снимка – за подробности и за поръчка
-7.	Salad – галерия със снимки на продуктите с две връзки на всяка снимка – за подробности и за поръчка
-8.	Appetizer – галерия със снимки на продуктите с две връзки на всяка снимка – за подробности и за поръчка
-9.	Мain course – галерия със снимки на продуктите с две връзки на всяка снимка – за подробности и за поръчка
-10.	Dessert – галерия със снимки на продуктите с две връзки на всяка снимка – за подробности и за поръчка
-11.	Soft drink – галерия със снимки на продуктите с две връзки на всяка снимка – за подробности и за поръчка
-12.	Alcohol - галерия със снимки на продуктите с две връзки на всяка снимка – за подробности и за поръчка
-13.	Others - галерия със снимки на продуктите с две връзки на всяка снимка – за подробности и за поръчка / може и една връзка, а поръчката да става от страницата с подробностите. Тук се уточнява и количеството
+6.	  Soup – галерия със снимки на продуктите с две връзки на всяка снимка – за подробности и за поръчка
+7.	  Salad – галерия със снимки на продуктите с две връзки на всяка снимка – за подробности и за поръчка
+8.	  Appetizer – галерия със снимки на продуктите с две връзки на всяка снимка – за подробности и за поръчка
+9.	  Мain course – галерия със снимки на продуктите с две връзки на всяка снимка – за подробности и за поръчка
+10.	  Dessert – галерия със снимки на продуктите с две връзки на всяка снимка – за подробности и за поръчка
+11.	  Soft drink – галерия със снимки на продуктите с две връзки на всяка снимка – за подробности и за поръчка
+12.	  Alcohol - галерия със снимки на продуктите с две връзки на всяка снимка – за подробности и за поръчка
+13.	  Others - галерия със снимки на продуктите с две връзки на всяка снимка – за подробности и за поръчка / може и една връзка, а поръчката да става от страницата с подробностите. Тук се уточнява и количеството
 14.	Поръчки (кошница) – списък на направените поръчки, бутон за потвърждение
 15.	Форма за плащане / доставка
 16.	Налични съставки в склада - само с достъп за admin
@@ -86,3 +193,4 @@ LocalDateTime updatedOn;
 24.	Страница на администратора - съдържа всички данни на потребителя и връзки към страниците, достъпни само за admin.
 
 ШАБЛОН: https://bootstrapmade.com/demo/Restaurantly/
+Aко сменяме снимки - традиционна българска кръчма - тук: https://www.podlipitebg.com/galeriya
