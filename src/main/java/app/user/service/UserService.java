@@ -26,19 +26,14 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final SubscriptionService subscriptionService;
-    private final WalletService walletService;
+
 
     @Autowired
     public UserService(UserRepository userRepository,
-                       PasswordEncoder passwordEncoder,
-                       SubscriptionService subscriptionService,
-                       WalletService walletService) {
+                       PasswordEncoder passwordEncoder) {
 
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
-        this.subscriptionService = subscriptionService;
-        this.walletService = walletService;
     }
 
     public User login(LoginRequest loginRequest) {
@@ -65,12 +60,7 @@ public class UserService {
         }
         //Ако няма потребител с този username може да го регистрира
         User user = userRepository.save(initializeUser(registerRequest));
-        //Добавя абонамент
-        Subscription defaultSubscription = subscriptionService.createDefaultSubscription(user);
-        user.setSubscriptions(List.of(defaultSubscription));
-        //Добавя портфейл
-        Wallet standardWallet = walletService.createNewWallet(user);
-        user.setWallets(List.of(standardWallet));
+
         //Добавя log.info (извиква се с анотацията @Slf4j)
         log.info("Successfully create new user account for username [%s] and id [%s]".formatted(user.getUsername(), user.getId()));
 
