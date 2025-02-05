@@ -193,3 +193,4 @@ private LocalDateTime updatedOn;
 24.	Страница на администратора - съдържа всички данни на потребителя и връзки към страниците, достъпни само за admin.
 
 ШАБЛОН: https://bootstrapmade.com/demo/Restaurantly/
+Aко сменяме снимки - традиционна българска кръчма - тук: https://www.podlipitebg.com/galeriya
