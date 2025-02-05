@@ -25,15 +25,26 @@ private List<Order> orders = new ArrayList<>();
 private List<Massage> massages = new ArrayList<>();
 }
 
-/* да се помисли това да отпадне
 Съставки:
-public class Ingredient – описва наличностите в склада
-UUID Id;
-String ingredientName;
+public class Ingredient (){ //  описва наличностите в склада
+private UUID Id;
+private String ingredientName;
 Double ingredientQuantity; - наличното количество в склада
 LocalDateTime createdOn;
 LocalDateTime updatedOn;
-*/
+} 
+
+Рецепта:
+public class Recipe (){
+private UUID id;
+
+@ManyToOne
+private Product product;
+
+private int quantity;
+private LocalDateTime createdOn;
+private LocalDateTime updatedOn;
+}
 
 Продукти:
 public class Product { //– описва менюто (храни и напитки)
@@ -41,7 +52,10 @@ private UUID id;
 private String productName; 
 private Enum category; // soup, salad, appetizer, main course, dessert, soft drink, alcohol, others (енумерация)
 private String description; // Кратко описание на продукта
-private Map (Ingredient, double quantity) recipe = new Map; // съдържа рецептата за продукта (съставка/количество)
+
+@OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
+@OrderBy("createdOn DESC")
+private List <Recipe> recipe = new ArrayList<>(); // съдържа рецептата за продукта (съставка/количество)
 private Text preparation; // начин на приготвяне;
 private int grammage; // количество на една порция
 private BigDecimal price;
@@ -53,21 +67,35 @@ private LocalDateTime updatedOn;
 
 Поръчки:
 public class Order () { // описва поръчката
-
+private UUID id;
 @ManyToOne
 private User user; // името на клиента (логнатия в системата)
 
 private Enum orderStatus; // for execution, for payment, paid, for delivery, delivered (енумерация)
 
-@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+@OneToMany(fetch = FetchType.EAGER, mappedBy = "order")
 @OrderBy("createdOn DESC")
-private Map (Product product, int quantity) order = new Map; // списък с продуктите в поръчката и техните количества
+private List<Cart> carts = new ArrayList<>();
 
 private BigDecimal price; // обща цена за поръчката
 private String addressForDelivery; // може да се раздели на отделни позиции – град, квартал, улица ....
+private int tableNumber; // номер ана масата (когато се обслужва от сервитьор)
 private String note; //Коментар
-privateLocalDateTime createdOn;
-privateLocalDateTime updatedOn;
+private LocalDateTime createdOn;
+private LocalDateTime updatedOn;
+}
+
+Количка:
+public class Cart (){ // количка - временно съхранява продуктите от поръчката
+private UUID id;
+
+@ManyToOne
+private Order order;
+
+private Product product;
+private int quantity;
+private LocalDateTime createdOn;
+private LocalDateTime updatedOn;
 }
 
 Съобщения:
