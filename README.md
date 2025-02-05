@@ -2,18 +2,31 @@ INQUIRY / Задание
 
 Потребители:
 public class User () { // – описва различните видове ползватели
+
 private UUID id;
+
 private String username; // задължително при регистрация и логване
+
 private String firstName; // не се изисква при регистрация, а само при редактиране на профила
+
 private String lastName; //  не се изисква при регистрация, а само при редактиране на профила
+
 private String profilePicture  //  не се изисква при регистрация, а само при редактиране на профила
+
 private String email; // задължително при регистрация
+
 private String password; // задължително при регистрация и логване
+
 private String phone; // задължително при регистрация
+
 private UserRole role; // admin, waiter, client, chef, bartender, caterer …. (енумерация) – client се въвежда автоматично от системата, останалите се променят ръчно от admin
+
 private Country country; // това трябва да се премахне
+
 private boolean isActive;
+
 private LocalDateTime createdOn; // дата на регистрация, въвежда се автоматично от системата
+
 private LocalDateTime updatedOn; // дата на промяна, въвежда се автоматично от системата
 
 @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
@@ -27,47 +40,68 @@ private List<Massage> massages = new ArrayList<>();
 
 Съставки:
 public class Ingredient (){ //  описва наличностите в склада
+
 private UUID Id;
+
 private String ingredientName;
+
 Double ingredientQuantity; - наличното количество в склада
+
 LocalDateTime createdOn;
+
 LocalDateTime updatedOn;
 } 
 
 Рецепта:
-public class Recipe (){
+public class ProductIngredient (){
+
 private UUID id;
 
 @ManyToOne
 private Product product;
 
 private int quantity;
+
 private LocalDateTime createdOn;
+
 private LocalDateTime updatedOn;
 }
 
 Продукти:
 public class Product { //– описва менюто (храни и напитки)
+
 private UUID id;
+
 private String productName; 
+
 private Enum category; // soup, salad, appetizer, main course, dessert, soft drink, alcohol, others (енумерация)
+
 private String description; // Кратко описание на продукта
 
 @OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
 @OrderBy("createdOn DESC")
-private List <Recipe> recipe = new ArrayList<>(); // съдържа рецептата за продукта (съставка/количество)
+private List <ProductIngredient> productIngredient = new ArrayList<>(); // съдържа рецептата за продукта (съставка/количество)
+
 private Text preparation; // начин на приготвяне;
+
 private int grammage; // количество на една порция
+
 private BigDecimal price;
+
 private String picture;
+
 private String productStatus; // available, out of stock,    (енумерация)
+
 private LocalDateTime createdOn;
+
 private LocalDateTime updatedOn;
 }
 
 Поръчки:
 public class Order () { // описва поръчката
+
 private UUID id;
+
 @ManyToOne
 private User user; // името на клиента (логнатия в системата)
 
@@ -78,23 +112,32 @@ private Enum orderStatus; // for execution, for payment, paid, for delivery, del
 private List<Cart> carts = new ArrayList<>();
 
 private BigDecimal price; // обща цена за поръчката
+
 private String addressForDelivery; // може да се раздели на отделни позиции – град, квартал, улица ....
+
 private int tableNumber; // номер ана масата (когато се обслужва от сервитьор)
+
 private String note; //Коментар
+
 private LocalDateTime createdOn;
+
 private LocalDateTime updatedOn;
 }
 
 Количка:
 public class Cart (){ // количка - временно съхранява продуктите от поръчката
+
 private UUID id;
 
 @ManyToOne
 private Order order;
 
 private Product product;
+
 private int quantity;
+
 private LocalDateTime createdOn;
+
 private LocalDateTime updatedOn;
 }
 
@@ -105,9 +148,13 @@ public class Message () { // изпращане на съобщение от п�
 private User user; // името на клиента (логнатия в системата)
 
 private String subject;
+
 private Text messageText;
+
 private Enum messageStatus; //written, read, replied, deleted 
+
 private LocalDateTime createdOn;
+
 private LocalDateTime updatedOn;
 }
 
