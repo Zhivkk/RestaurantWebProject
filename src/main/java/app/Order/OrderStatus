@@ -1,0 +1,3 @@
+public Enum OrderStatus {
+FOR_EXECUTION, FOR_PAYMENT, FOR_DELIVERY, DELIVERED
+}
