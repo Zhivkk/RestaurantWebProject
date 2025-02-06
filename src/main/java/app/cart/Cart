@@ -1,0 +1,15 @@
+public class Cart (){ // количка - временно съхранява продуктите от поръчката
+
+private UUID id;
+
+@ManyToOne
+private Order order;
+
+private Product product;
+
+private int quantity;
+
+private LocalDateTime createdOn;
+
+private LocalDateTime updatedOn;
+}
