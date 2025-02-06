@@ -1,1 +1,28 @@
+public class Product { //– описва менюто (храни и напитки)
 
+private UUID id;
+
+private String productName; 
+
+private Enum productCategory; // soup, salad, appetizer, main course, dessert, soft drink, alcohol, others (енумерация)
+
+private String description; // Кратко описание на продукта
+
+@OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
+@OrderBy("createdOn DESC")
+private List <ProductIngredient> productIngredient = new ArrayList<>(); // съдържа рецептата за продукта (съставка/количество)
+
+private Text preparation; // начин на приготвяне;
+
+private int grammage; // количество на една порция
+
+private BigDecimal price;
+
+private String picture;
+
+private String productStatus; // available, out of stock,    (енумерация)
+
+private LocalDateTime createdOn;
+
+private LocalDateTime updatedOn;
+}
