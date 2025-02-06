@@ -1,1 +1,13 @@
+public class ProductIngredient (){
 
+private UUID id;
+
+@ManyToOne
+private Product product;
+
+private int quantity;
+
+private LocalDateTime createdOn;
+
+private LocalDateTime updatedOn;
+}
