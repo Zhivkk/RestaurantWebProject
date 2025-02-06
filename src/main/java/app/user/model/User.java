@@ -34,12 +34,15 @@ public class User {
 
     @Column(nullable = false)
     private String password;
+    
+    @Column(nullable = false)
+    private String phone; // задължително при регистрация
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING) //client се въвежда автоматично от системата, останалите се променят ръчно от admin
     @Column(nullable = false)
     private UserRole role;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING) // това трябва да се премахне
     @Column(nullable = false)
     private Country country;
 
@@ -51,5 +54,12 @@ public class User {
     @Column(nullable = false)
     private LocalDateTime updatedOn;
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    @OrderBy("createdOn DESC")
+    private List<Order> orders = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    @OrderBy("createdOn DESC")
+    private List<Massage> massages = new ArrayList<>();
 
 }
