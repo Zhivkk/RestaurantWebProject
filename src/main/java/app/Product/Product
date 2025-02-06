@@ -4,7 +4,7 @@ private UUID id;
 
 private String productName; 
 
-private Enum productCategory; // soup, salad, appetizer, main course, dessert, soft drink, alcohol, others (енумерация)
+private ProductCategory productCategory; // soup, salad, appetizer, main course, dessert, soft drink, alcohol, others (енумерация)
 
 private String description; // Кратко описание на продукта
 
@@ -20,7 +20,7 @@ private BigDecimal price;
 
 private String picture;
 
-private String productStatus; // available, out of stock,    (енумерация)
+private ProductStatus productStatus; // available, out of stock,    (енумерация)
 
 private LocalDateTime createdOn;
 
