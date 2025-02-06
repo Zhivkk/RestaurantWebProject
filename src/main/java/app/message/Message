@@ -1,0 +1,15 @@
+public class Message () { // изпращане на съобщение от потребителя до системата и отговор
+
+@ManyToOne
+private User user; // името на клиента (логнатия в системата)
+
+private String subject;
+
+private Text messageText;
+
+private МessageStatus messageStatus; //written, read, replied, deleted 
+
+private LocalDateTime createdOn;
+
+private LocalDateTime updatedOn;
+}
