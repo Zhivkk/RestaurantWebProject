@@ -1,1 +1,25 @@
+public class Order () { // описва поръчката
 
+private UUID id;
+
+@ManyToOne
+private User user; // името на клиента (логнатия в системата)
+
+private Enum orderStatus; // for execution, for payment, paid, for delivery, delivered (енумерация)
+
+@OneToMany(fetch = FetchType.EAGER, mappedBy = "order")
+@OrderBy("createdOn DESC")
+private List<Cart> carts = new ArrayList<>();
+
+private BigDecimal price; // обща цена за поръчката
+
+private String addressForDelivery; // може да се раздели на отделни позиции – град, квартал, улица ....
+
+private int tableNumber; // номер ана масата (когато се обслужва от сервитьор)
+
+private String note; //Коментар
+
+private LocalDateTime createdOn;
+
+private LocalDateTime updatedOn;
+}
