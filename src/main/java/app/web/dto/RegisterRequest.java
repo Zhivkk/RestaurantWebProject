@@ -1,6 +1,5 @@
 package app.web.dto;
 
-import app.user.model.Country;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -20,6 +19,4 @@ public class RegisterRequest { //DTO - Получава информацията
     @Size(min = 6, message = "Password must be at least 6 symbols")
     private String password;
 
-    @NotNull
-    private Country country;
 }

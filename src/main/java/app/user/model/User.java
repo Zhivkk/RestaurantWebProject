@@ -1,5 +1,7 @@
 package app.user.model;
 
+import app.Order.Order;
+import app.message.Message;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -42,10 +44,6 @@ public class User {
     @Column(nullable = false)
     private UserRole role;
 
-    @Enumerated(EnumType.STRING) // това трябва да се премахне
-    @Column(nullable = false)
-    private Country country;
-
     private boolean isActive;
 
     @Column(nullable = false)
@@ -60,6 +58,6 @@ public class User {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     @OrderBy("createdOn DESC")
-    private List<Massage> massages = new ArrayList<>();
+    private List<Message> massages = new ArrayList<>();
 
 }

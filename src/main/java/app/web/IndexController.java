@@ -1,5 +1,6 @@
 package app.web;
 
+
 import app.user.model.User;
 import app.user.service.UserService;
 import app.web.dto.LoginRequest;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -22,6 +24,7 @@ public class IndexController {
 
     @Autowired
     public IndexController(UserService userService) {
+
         this.userService = userService;
     }
 
@@ -29,30 +32,6 @@ public class IndexController {
     public String getIndexPage() {
 
         return "index";
-    }
-
-    @GetMapping("/login")
-    public ModelAndView getLoginPage() {
-
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("login");
-        modelAndView.addObject("loginRequest", new LoginRequest());
-
-        return modelAndView;
-    }
-
-    // Autowiring of HttpSession session = създава нова сесия за тази заявка (ако няма вече сесия)
-    @PostMapping("/login")
-    public String login(@Valid LoginRequest loginRequest, BindingResult bindingResult, HttpSession session) {
-
-        if (bindingResult.hasErrors()) {
-            return "login";
-        }
-
-        User loggedInUser = userService.login(loginRequest);
-        session.setAttribute("user_id", loggedInUser.getId());
-
-        return "redirect:/home";
     }
 
     @GetMapping("/register")
@@ -66,15 +45,40 @@ public class IndexController {
     }
 
     @PostMapping("/register")
-    public ModelAndView registerNewUser(@Valid RegisterRequest registerRequest, BindingResult bindingResult) {
+    public String processRegisterRequest(@Valid RegisterRequest registerRequest, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            return new ModelAndView("register");
+            return "register";
         }
 
-        userService.register(registerRequest);
+        userService.registerUser(registerRequest);
 
-        return new ModelAndView("redirect:/login");
+        return "redirect:/login";
+    }
+
+
+    @GetMapping("/login")
+    public ModelAndView getLoginPage() {
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("login");
+        modelAndView.addObject("loginRequest", new LoginRequest());
+
+        return modelAndView;
+    }
+
+    @PostMapping("/login")
+    public String processLoginRequest(@Valid LoginRequest loginRequest, BindingResult bindingResult, HttpSession session) {
+
+        if (bindingResult.hasErrors()) {
+            return "login";
+        }
+
+        User user = userService.loginUser(loginRequest);
+
+        session.setAttribute("user_id", user.getId());
+
+        return "redirect:/home";
     }
 
     @GetMapping("/home")
@@ -84,7 +88,7 @@ public class IndexController {
         User user = userService.getById(userId);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("home");
+        modelAndView.setViewName("home"); //отварям хоум страницата
         modelAndView.addObject("user", user);
 
         return modelAndView;

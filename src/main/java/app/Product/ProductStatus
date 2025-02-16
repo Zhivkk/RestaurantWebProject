@@ -1,3 +1,0 @@
-public Enum ProductStatus {
-AVAILABLE, OUT_OF_STOCK
-}

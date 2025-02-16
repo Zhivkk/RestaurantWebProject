@@ -1,3 +1,0 @@
-public Enum MessageStaus {
-WRITEN, READ, REPLIED, DELETED
-}
