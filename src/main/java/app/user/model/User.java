@@ -1,7 +1,7 @@
 package app.user.model;
 
 import app.Order.Order;
-import app.message.Message;
+import app.Message.Message;
 import jakarta.persistence.*;
 import lombok.*;
 

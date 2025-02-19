@@ -20,84 +20,8 @@ import java.util.UUID;
 @Controller
 public class IndexController {
 
-    private final UserService userService;
-
-    @Autowired
-    public IndexController(UserService userService) {
-
-        this.userService = userService;
-    }
-
-    @GetMapping("/")
-    public String getIndexPage() {
-
-        return "index";
-    }
-
-    @GetMapping("/register")
-    public ModelAndView getRegisterPage() {
-
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("register");
-        modelAndView.addObject("registerRequest", new RegisterRequest());
-
-        return modelAndView;
-    }
-
-    @PostMapping("/register")
-    public String processRegisterRequest(@Valid RegisterRequest registerRequest, BindingResult bindingResult) {
-
-        if (bindingResult.hasErrors()) {
-            return "register";
-        }
-
-        userService.registerUser(registerRequest);
-
-        return "redirect:/login";
-    }
-
-
-    @GetMapping("/login")
-    public ModelAndView getLoginPage() {
-
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("login");
-        modelAndView.addObject("loginRequest", new LoginRequest());
-
-        return modelAndView;
-    }
-
-    @PostMapping("/login")
-    public String processLoginRequest(@Valid LoginRequest loginRequest, BindingResult bindingResult, HttpSession session) {
-
-        if (bindingResult.hasErrors()) {
-            return "login";
-        }
-
-        User user = userService.loginUser(loginRequest);
-
-        session.setAttribute("user_id", user.getId());
-
-        return "redirect:/home";
-    }
-
     @GetMapping("/home")
-    public ModelAndView getHomePage(HttpSession session) {
-
-        UUID userId = (UUID) session.getAttribute("user_id");
-        User user = userService.getById(userId);
-
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("home"); //отварям хоум страницата
-        modelAndView.addObject("user", user);
-
-        return modelAndView;
-    }
-
-    @GetMapping("/logout")
-    public String getLogoutPage(HttpSession session) {
-
-        session.invalidate();
-        return "redirect:/";
+    public String getIndexPage() {
+        return "index";
     }
 }

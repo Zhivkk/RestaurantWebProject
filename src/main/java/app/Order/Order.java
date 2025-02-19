@@ -3,6 +3,7 @@ package app.Order;
 import app.cart.Cart;
 import app.user.model.User;
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -11,6 +12,11 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Order { // описва поръчката
 
     @Id
