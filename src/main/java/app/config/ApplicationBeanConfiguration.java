@@ -6,10 +6,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-public class BeanConfiguration {
+public class ApplicationBeanConfiguration {
 
     @Bean
-    public PasswordEncoder passwordEncoder() {//Винаги, когато се извиква PasswordEncoder се извиква BCryptPasswordEncoder
+    public PasswordEncoder passwordEncoder() {
+
         return new BCryptPasswordEncoder();
     }
 }
