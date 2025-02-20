@@ -20,8 +20,10 @@ import java.util.UUID;
 @Controller
 public class IndexController {
 
+    @GetMapping("/")
+    public String getIndexPage() { return "index";}
+
     @GetMapping("/home")
-    public String getIndexPage() {
-        return "index";
-    }
+    public String getHomePage() { return "home";}
+
 }
