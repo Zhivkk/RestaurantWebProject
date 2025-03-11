@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:font-size="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
@@ -50,7 +50,11 @@
                 <!-- <img src="assets/img/logo.png" alt=""> -->
                 <h1 class="sitename">ресторант Вистоди</h1>
             </a>
-
+            <div class="ms-auto d-flex gap-2">
+                <a th:if="${session.isEmpty()}" th:href="@{/login}" class="cta-btn">Влез   </a> <!-- покажи ако няма потребител-->
+                <a th:if="${session.isEmpty()}" th:href="@{/register}" class="cta-btn">Регистрирай се   </a>
+                <a th:if="${!session.isEmpty()}" class="logout" href="/logout">Излез</a> <!-- покажи ако има потребител-->
+            </div>
             <nav id="navmenu" class="navmenu">
                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
@@ -75,18 +79,20 @@
                     <p data-aos="fade-up" data-aos-delay="200"></p>
                     <p data-aos="fade-up" data-aos-delay="200"></p>
                     <p data-aos="fade-up" data-aos-delay="200" style="color: orange; font-size: 25px;">...едно място над нещата ...</p>
-                    <p data-aos="fade-up" data-aos-delay="200">     Тук, няма изкуствени усмивки и пластмасови зеленчуци. Има гурме, но приготвено като у дома.
+                    <p data-aos="fade-up" data-aos-delay="200"></p>
+                    <p data-aos="fade-up" data-aos-delay="200" style="font-size: 18px">     Тук, няма изкуствени усмивки и пластмасови зеленчуци. Има гурме, но приготвено като у дома.
                         С био продукти, но не от супера, а отгледани от съвсем автентични баби в близките села. С билки от собствената градина.</p>
                     <p data-aos="fade-up" data-aos-delay="200"></p>
-                    <p data-aos="fade-up" data-aos-delay="200">     Има вино, чийто вкус не се забравя, независимо колко чаши си изпил.
+                    <p data-aos="fade-up" data-aos-delay="200" style="font-size: 18px">     Има вино, чийто вкус не се забравя, независимо колко чаши си изпил.
                         Има изумителен главен готвач с вечна усмивка, който превръща храната в симфония. И роял, който я допълва. </p>
                     <p data-aos="fade-up" data-aos-delay="200"></p>
-                    <p data-aos="fade-up" data-aos-delay="200">     И атмосфера, толкова хармонична, че гостите се връщат често в този ресторант. Понякога и насън.
+                    <p data-aos="fade-up" data-aos-delay="200" style="font-size: 18px">     И атмосфера, толкова хармонична, че гостите се връщат често в този ресторант. Понякога и насън.
                         За останалото няма да разказваме, защото трябва да се опита.</p>
                     <p data-aos="fade-up" data-aos-delay="200"></p>
-                    <p data-aos="fade-up" data-aos-delay="200">А и можеш да си го представиш с един бърз поглед към менюто, с което сме наистина горди!</p>
+                    <p data-aos="fade-up" data-aos-delay="200" style="font-size: 18px">А и можеш да си го представиш с един бърз поглед към менюто, с което сме наистина горди!</p>
                     <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
                         <a th:href="@{/home}" class="cta-btn">Продължи</a>
+
                     </div>
                 </div>
             </div>

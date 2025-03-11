@@ -1,7 +1,7 @@
-package app.cart;
+package app.Errand;
 
 import org.springframework.stereotype.Service;
 
 @Service
-public class CartService {
+public class OrderService {
 }

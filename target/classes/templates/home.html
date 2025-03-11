@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Index - Restaurant Web Project</title>
+  <title>Restaurant Web Project</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -55,36 +55,40 @@
 
         <nav id="navmenu" class="navmenu">
           <ul>
-            <li><a href="#hero" class="active">Home<br></a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#menu">Menu</a></li>
-            <li><a href="#specials">Specials</a></li>
-            <li><a href="#events">Events</a></li>
-            <li><a href="#chefs">Chefs</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul>
-                <li><a href="#">Dropdown 1</a></li>
-                <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                  <ul>
-                    <li><a href="#">Deep Dropdown 1</a></li>
-                    <li><a href="#">Deep Dropdown 2</a></li>
-                    <li><a href="#">Deep Dropdown 3</a></li>
-                    <li><a href="#">Deep Dropdown 4</a></li>
-                    <li><a href="#">Deep Dropdown 5</a></li>
-                  </ul>
-                </li>
-                <li><a href="#">Dropdown 2</a></li>
-                <li><a href="#">Dropdown 3</a></li>
-                <li><a href="#">Dropdown 4</a></li>
-              </ul>
-            </li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#hero" class="active"><br></a></li>
+            <li><a href="#about">За нас</a></li>
+            <li><a href="#menu">Меню</a></li>
+            <li><a href="#specials">Специалитети</a></li>
+            <li><a href="#events">Събития</a></li>
+            <li><a href="#chefs">Готвачи</a></li>
+            <li><a href="#gallery">Галерия</a></li>
+<!--            <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>-->
+<!--              <ul>-->
+<!--                <li><a href="#">Dropdown 1</a></li>-->
+<!--                <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>-->
+<!--                  <ul>-->
+<!--                    <li><a href="#">Deep Dropdown 1</a></li>-->
+<!--                    <li><a href="#">Deep Dropdown 2</a></li>-->
+<!--                    <li><a href="#">Deep Dropdown 3</a></li>-->
+<!--                    <li><a href="#">Deep Dropdown 4</a></li>-->
+<!--                    <li><a href="#">Deep Dropdown 5</a></li>-->
+<!--                  </ul>-->
+<!--                </li>-->
+<!--                <li><a href="#">Dropdown 2</a></li>-->
+<!--                <li><a href="#">Dropdown 3</a></li>-->
+<!--                <li><a href="#">Dropdown 4</a></li>-->
+<!--              </ul>-->
+<!--            </li>-->
+            <li><a href="#contact">Контакти</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
-
-        <a class="btn-book-a-table d-none d-xl-block" href="#book-a-table">Book a Table</a>
+        <div class="ms-auto d-flex gap-2">
+          <a th:if="${session.isEmpty()}" th:href="@{/login}" class="cta-btn">Влез </a>
+          <a th:if="${session.isEmpty()}" th:href="@{/register}" class="cta-btn">Регистрирай се </a>
+          <a th:if="${!session.isEmpty()}" th:href="@{'/users/' + ${user.id} + '/profile'}" class="cta-btn">Промяна на профила </a>
+          <a th:if="${!session.isEmpty()}" class="logout" href="/logout">Излез</a>
+        </div>
 
       </div>
 
@@ -127,19 +131,16 @@
             <img src="/assets/img/about.jpg" class="img-fluid about-img" alt="">
           </div>
           <div class="col-lg-6 order-2 order-lg-1 content">
-            <h3>Voluptatem dignissimos provident</h3>
-            <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
-            </p>
+            <h3>Нашият ресторант Ви предлага</h3>
+            <p class="fst-italic">Основните ни предимства, както ние ги виждаме, и както ги описват нашите гости са:</p>
             <ul>
-              <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
-              <li><i class="bi bi-check2-all"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
-              <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>Изискана обстановка, която ще се хареса на всеки гост</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>Професионално обслужване</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>Перфектни ястия, проготвени от чисти продукти и с много любов от нашите готвачи</span></li>
+              <li><i class="bi bi-check2-all"></i> <span> ... и съвсем приемливи цени, разбира се.</span></li>
             </ul>
             <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident
+              И за да се убедите, че всичко това е истина, посетете ни!
             </p>
           </div>
         </div>
@@ -153,8 +154,8 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>WHY US</h2>
-        <p>Why Choose Our Restaurant</p>
+        <h2>Защо нас</h2>
+        <p>Защо да изберете нас?</p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -164,24 +165,24 @@
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
             <div class="card-item">
               <span>01</span>
-              <h4><a href="" class="stretched-link">Lorem Ipsum</a></h4>
-              <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>
+              <h4><a href="" class="stretched-link">Добро местоположение</a></h4>
+              <p>Ние се намиране в самия център на града</p>
             </div>
           </div><!-- Card Item -->
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
             <div class="card-item">
               <span>02</span>
-              <h4><a href="" class="stretched-link">Repellat Nihil</a></h4>
-              <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p>
+              <h4><a href="" class="stretched-link">Прекрасна храна</a></h4>
+              <p>Приготвена от чисти продукти и с много любов</p>
             </div>
           </div><!-- Card Item -->
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
             <div class="card-item">
               <span>03</span>
-              <h4><a href="" class="stretched-link">Ad ad velit qui</a></h4>
-              <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>
+              <h4><a href="" class="stretched-link">Приемливи цени</a></h4>
+              <p>По-ниски от всички подобни заведения в града</p>
             </div>
           </div><!-- Card Item -->
 
@@ -191,121 +192,171 @@
 
     </section><!-- /Why Us Section -->
 
+
     <!-- Menu Section -->
     <section id="menu" class="menu section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Menu</h2>
-        <p>Check Our Tasty Menu</p>
+        <h2>Меню</h2>
+        <p>Опитайте нашето вкусно меню</p>
       </div><!-- End Section Title -->
 
+<!--      Menu item-->
       <div class="container isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
 
         <div class="row" data-aos="fade-up" data-aos-delay="100">
           <div class="col-lg-12 d-flex justify-content-center">
             <ul class="menu-filters isotope-filters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-starters">Starters</li>
-              <li data-filter=".filter-salads">Salads</li>
-              <li data-filter=".filter-specialty">Specialty</li>
+              <li data-filter="*" class="filter-active">Всички</li>
+              <li data-filter=".filter-soup">Супи</li>
+              <li data-filter=".filter-salad">Салати</li>
+              <li data-filter=".filter-appetizer">Предястия</li>
+              <li data-filter=".filter-main_course">Основни</li>
+              <li data-filter=".filter-dessert">Десерти</li>
+              <li data-filter=".filter-soft_drink">Безалкохолни напитки</li>
+              <li data-filter=".filter-alcohol">Алкохолни напитки</li>
+              <li data-filter=".filter-other">Други</li>
             </ul>
           </div>
         </div><!-- Menu Filters -->
 
         <div class="row isotope-container" data-aos="fade-up" data-aos-delay="200">
+<!-- Начало на блока
+ Ще се направят множество такива блокове, според филтрите по-горе. Данните ще бъдат в отделни спицъци, подадени от контролера.
+ В блока ще се обхождат списъците и ще се визуализират със снимки и име, цена и описание-->
 
-          <div class="col-lg-6 menu-item isotope-item filter-starters">
-            <img src="/assets/img/menu/lobster-bisque.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Lobster Bisque</a><span>$5.95</span>
-            </div>
-            <div class="menu-ingredients">
-              Lorem, deren, trataro, filede, nerada
-            </div>
-          </div><!-- Menu Item -->
+          <div th:each=" soup: ${soups}" class="col-lg-6 menu-item isotope-item filter-soup">
+            <img th:src="${soup.getPicture()}" class="menu-img" alt=""> <!-- тук е пътят към снимката -->
+            <div class="menu-content"><a th:href="@{/product-details}" th:text="${soup.getProductName()}"></a><span th:text="${soup.getPrice()+' лв.'}"></span></div> <!-- това е името и цената-->
+            <div class="menu-ingredients", th:text="${soup.getDescription()}">Тук трябва да са изредени продуктите, а не описанието</div>
+          </div>
 
-          <div class="col-lg-6 menu-item isotope-item filter-specialty">
-            <img src="/assets/img/menu/bread-barrel.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Bread Barrel</a><span>$6.95</span>
-            </div>
-            <div class="menu-ingredients">
-              Lorem, deren, trataro, filede, nerada
-            </div>
-          </div><!-- Menu Item -->
+          <div th:each="salad : ${salads}" class="col-lg-6 menu-item isotope-item filter-salad">
+            <img th:src="${salad.getPicture()}" class="menu-img" alt=""> <!-- тук е пътят към снимката -->
+            <div class="menu-content"><a th:href="@{/product-details}" th:text="${salad.getProductName()}"></a><span th:text="${salad.getPrice()+' лв.'}"></span></div> <!-- това е името и цената-->
+            <div class="menu-ingredients", th:text="${salad.getDescription()}">Тук трябва да са изредени продуктите, а не описанието</div>
+          </div> <!-- това е описанието -->
 
-          <div class="col-lg-6 menu-item isotope-item filter-starters">
-            <img src="/assets/img/menu/cake.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Crab Cake</a><span>$7.95</span>
-            </div>
-            <div class="menu-ingredients">
-              A delicate crab cake served on a toasted roll with lettuce and tartar sauce
-            </div>
-          </div><!-- Menu Item -->
+          <div th:each="appetizer : ${appetizers}" class="col-lg-6 menu-item isotope-item filter-appetizer">
+            <img th:src="${appetizer.getPicture()}" class="menu-img" alt=""> <!-- тук е пътят към снимката -->
+            <div class="menu-content"><a th:href="@{/product-details}" th:text="${appetizer.getProductName()}"></a><span th:text="${appetizer.getPrice()+' лв.'}"></span></div> <!-- това е името и цената-->
+            <div class="menu-ingredients", th:text="${appetizer.getDescription()}">Тук трябва да са изредени продуктите, а не описанието</div>
+          </div>
 
-          <div class="col-lg-6 menu-item isotope-item filter-salads">
-            <img src="/assets/img/menu/caesar.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Caesar Selections</a><span>$8.95</span>
-            </div>
-            <div class="menu-ingredients">
-              Lorem, deren, trataro, filede, nerada
-            </div>
-          </div><!-- Menu Item -->
+          <div th:each="mainCourse : ${mainCourses}" class="col-lg-6 menu-item isotope-item filter-main_course">
+            <img th:src="${mainCourse.getPicture()}" class="menu-img" alt=""> <!-- тук е пътят към снимката -->
+            <div class="menu-content"><a th:href="@{/product-details}" th:text="${mainCourse.getProductName()}"></a><span th:text="${mainCourse.getPrice()+' лв.'}"></span></div> <!-- това е името и цената-->
+            <div class="menu-ingredients", th:text="${mainCourse.getDescription()}">Тук трябва да са изредени продуктите, а не описанието</div>
+          </div>
 
-          <div class="col-lg-6 menu-item isotope-item filter-specialty">
-            <img src="/assets/img/menu/tuscan-grilled.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Tuscan Grilled</a><span>$9.95</span>
-            </div>
-            <div class="menu-ingredients">
-              Grilled chicken with provolone, artichoke hearts, and roasted red pesto
-            </div>
-          </div><!-- Menu Item -->
+          <div th:each="dessert : ${desserts}" class="col-lg-6 menu-item isotope-item filter-dessert">
+            <img th:src="${dessert.getPicture()}" class="menu-img" alt=""> <!-- тук е пътят към снимката -->
+            <div class="menu-content"><a th:href="@{/product-details}" th:text="${dessert.getProductName()}"></a><span th:text="${dessert.getPrice()+' лв.'}"></span></div> <!-- това е името и цената-->
+            <div class="menu-ingredients", th:text="${dessert.getDescription()}">Тук трябва да са изредени продуктите, а не описанието</div>
+          </div>
 
-          <div class="col-lg-6 menu-item isotope-item filter-starters">
-            <img src="/assets/img/menu/mozzarella.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Mozzarella Stick</a><span>$4.95</span>
-            </div>
-            <div class="menu-ingredients">
-              Lorem, deren, trataro, filede, nerada
-            </div>
-          </div><!-- Menu Item -->
+          <div th:each="softDrink : ${softDrinks}" class="col-lg-6 menu-item isotope-item filter-soft_drink">
+            <img th:src="${softDrink.getPicture()}" class="menu-img" alt=""> <!-- тук е пътят към снимката -->
+            <div class="menu-content"><a th:href="@{/product-details}" th:text="${softDrink.getProductName()}"></a><span th:text="${softDrink.getPrice()+' лв.'}"></span></div> <!-- това е името и цената-->
+            <div class="menu-ingredients", th:text="${softDrink.getDescription()}">Тук трябва да са изредени продуктите, а не описанието</div>
+          </div>
 
-          <div class="col-lg-6 menu-item isotope-item filter-salads">
-            <img src="/assets/img/menu/greek-salad.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Greek Salad</a><span>$9.95</span>
-            </div>
-            <div class="menu-ingredients">
-              Fresh spinach, crisp romaine, tomatoes, and Greek olives
-            </div>
-          </div><!-- Menu Item -->
+          <div th:each="alcohol : ${alcohols}" class="col-lg-6 menu-item isotope-item filter-alcohol">
+            <img th:src="${alcohol.getPicture()}" class="menu-img" alt=""> <!-- тук е пътят към снимката -->
+            <div class="menu-content"><a th:href="@{/product-details}" th:text="${alcohol.getProductName()}"></a><span th:text="${alcohol.getPrice()+' лв.'}"></span></div> <!-- това е името и цената-->
+            <div class="menu-ingredients", th:text="${alcohol.getDescription()}">Тук трябва да са изредени продуктите, а не описанието</div>
+          </div>
 
-          <div class="col-lg-6 menu-item isotope-item filter-salads">
-            <img src="/assets/img/menu/spinach-salad.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Spinach Salad</a><span>$9.95</span>
-            </div>
-            <div class="menu-ingredients">
-              Fresh spinach with mushrooms, hard boiled egg, and warm bacon vinaigrette
-            </div>
-          </div><!-- Menu Item -->
+          <div th:each="other : ${others}" class="col-lg-6 menu-item isotope-item filter-other">
+            <img th:src="${other.getPicture()}" class="menu-img" alt=""> <!-- тук е пътят към снимката -->
+            <div class="menu-content"><a th:href="@{/product-details}" th:text="${other.getProductName()}"></a><span th:text="${other.getPrice()+' лв.'}"></span></div> <!-- това е името и цената-->
+            <div class="menu-ingredients", th:text="${other.getDescription()}">Тук трябва да са изредени продуктите, а не описанието</div>
+          </div>
 
-          <div class="col-lg-6 menu-item isotope-item filter-specialty">
-            <img src="/assets/img/menu/lobster-roll.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Lobster Roll</a><span>$12.95</span>
-            </div>
-            <div class="menu-ingredients">
-              Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll
-            </div>
-          </div><!-- Menu Item -->
+          <!-- Menu Item -->
 
-        </div><!-- Menu Container -->
+<!--          <div class="col-lg-6 menu-item isotope-item filter-specialty">-->
+<!--            <img src="/assets/img/menu/bread-barrel.jpg" class="menu-img" alt="">-->
+<!--            <div class="menu-content">-->
+<!--              <a href="#">Bread Barrel</a><span>$6.95</span>-->
+<!--            </div>-->
+<!--            <div class="menu-ingredients">-->
+<!--              Lorem, deren, trataro, filede, nerada-->
+<!--            </div>-->
+<!--          </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--          <div class="col-lg-6 menu-item isotope-item filter-starters">-->
+<!--            <img src="/assets/img/menu/cake.jpg" class="menu-img" alt="">-->
+<!--            <div class="menu-content">-->
+<!--              <a href="#">Crab Cake</a><span>$7.95</span>-->
+<!--            </div>-->
+<!--            <div class="menu-ingredients">-->
+<!--              A delicate crab cake served on a toasted roll with lettuce and tartar sauce-->
+<!--            </div>-->
+<!--          </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--          <div class="col-lg-6 menu-item isotope-item filter-salads">-->
+<!--            <img src="/assets/img/menu/caesar.jpg" class="menu-img" alt="">-->
+<!--            <div class="menu-content">-->
+<!--              <a href="#">Caesar Selections</a><span>$8.95</span>-->
+<!--            </div>-->
+<!--            <div class="menu-ingredients">-->
+<!--              Lorem, deren, trataro, filede, nerada-->
+<!--            </div>-->
+<!--          </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--          <div class="col-lg-6 menu-item isotope-item filter-specialty">-->
+<!--            <img src="/assets/img/menu/tuscan-grilled.jpg" class="menu-img" alt="">-->
+<!--            <div class="menu-content">-->
+<!--              <a href="#">Tuscan Grilled</a><span>$9.95</span>-->
+<!--            </div>-->
+<!--            <div class="menu-ingredients">-->
+<!--              Grilled chicken with provolone, artichoke hearts, and roasted red pesto-->
+<!--            </div>-->
+<!--          </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--          <div class="col-lg-6 menu-item isotope-item filter-starters">-->
+<!--            <img src="/assets/img/menu/mozzarella.jpg" class="menu-img" alt="">-->
+<!--            <div class="menu-content">-->
+<!--              <a href="#">Mozzarella Stick</a><span>$4.95</span>-->
+<!--            </div>-->
+<!--            <div class="menu-ingredients">-->
+<!--              Lorem, deren, trataro, filede, nerada-->
+<!--            </div>-->
+<!--          </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--          <div class="col-lg-6 menu-item isotope-item filter-salads">-->
+<!--            <img src="/assets/img/menu/greek-salad.jpg" class="menu-img" alt="">-->
+<!--            <div class="menu-content">-->
+<!--              <a href="#">Greek Salad</a><span>$9.95</span>-->
+<!--            </div>-->
+<!--            <div class="menu-ingredients">-->
+<!--              Fresh spinach, crisp romaine, tomatoes, and Greek olives-->
+<!--            </div>-->
+<!--          </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--          <div class="col-lg-6 menu-item isotope-item filter-salads">-->
+<!--            <img src="/assets/img/menu/spinach-salad.jpg" class="menu-img" alt="">-->
+<!--            <div class="menu-content">-->
+<!--              <a href="#">Spinach Salad</a><span>$9.95</span>-->
+<!--            </div>-->
+<!--            <div class="menu-ingredients">-->
+<!--              Fresh spinach with mushrooms, hard boiled egg, and warm bacon vinaigrette-->
+<!--            </div>-->
+<!--          </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--          <div class="col-lg-6 menu-item isotope-item filter-specialty">-->
+<!--            <img src="/assets/img/menu/lobster-roll.jpg" class="menu-img" alt="">-->
+<!--            <div class="menu-content">-->
+<!--              <a href="#">Lobster Roll</a><span>$12.95</span>-->
+<!--            </div>-->
+<!--            <div class="menu-ingredients">-->
+<!--              Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll-->
+<!--            </div>-->
+<!--          </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--        </div>&lt;!&ndash; Menu Container &ndash;&gt;-->
 
       </div>
 
@@ -316,8 +367,8 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Specials</h2>
-        <p>Check Our Specials</p>
+        <h2>Специалитети</h2>
+        <p>Опитайте нашите специалитети</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -326,19 +377,19 @@
           <div class="col-lg-3">
             <ul class="nav nav-tabs flex-column">
               <li class="nav-item">
-                <a class="nav-link active show" data-bs-toggle="tab" href="#specials-tab-1">Modi sit est</a>
+                <a class="nav-link active show" data-bs-toggle="tab" href="#specials-tab-1" th:text="${specials[0].getProductName()}"></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#specials-tab-2">Unde praesentium sed</a>
+                <a class="nav-link" data-bs-toggle="tab" href="#specials-tab-2" th:text="${specials[1].getProductName()}"></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#specials-tab-3">Pariatur explicabo vel</a>
+                <a class="nav-link" data-bs-toggle="tab" href="#specials-tab-3" th:text="${specials[2].getProductName()}"></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#specials-tab-4">Nostrum qui quasi</a>
+                <a class="nav-link" data-bs-toggle="tab" href="#specials-tab-4" th:text="${specials[3].getProductName()}"></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#specials-tab-5">Iusto ut expedita aut</a>
+                <a class="nav-link" data-bs-toggle="tab" href="#specials-tab-5" th:text="${specials[4].getProductName()}"></a>
               </li>
             </ul>
           </div>
@@ -347,12 +398,12 @@
               <div class="tab-pane active show" id="specials-tab-1">
                 <div class="row">
                   <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Architecto ut aperiam autem id</h3>
-                    <p class="fst-italic">Qui laudantium consequatur laborum sit qui ad sapiente dila parde sonata raqer a videna mareta paulona marka</p>
-                    <p>Et nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos ipsum ipsa odit magni. Incidunt hic ut molestiae aut qui. Est repellat minima eveniet eius et quis magni nihil. Consequatur dolorem quaerat quos qui similique accusamus nostrum rem vero</p>
+                    <h3 th:text="${specials[0].getProductName()}"></h3>
+                    <p th:text="${specials[0].getDescription()}" class="fst-italic"></p>
+                    <p>   </p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="/assets/img/specials-1.png" alt="" class="img-fluid">
+                    <img th:src="${specials[0].getPicture()}" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
@@ -531,8 +582,8 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>RESERVATION</h2>
-        <p>Book a Table</p>
+        <h2>РЕЗЕРВАЦИИ</h2>
+        <p>Запази маса</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -580,8 +631,8 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Testimonials</h2>
-        <p>What they're saying about us</p>
+        <h2>Отзиви</h2>
+        <p>Какво казаха нашите клиенти</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -618,12 +669,12 @@
               <div class="testimonial-item">
             <p>
               <i class=" bi bi-quote quote-icon-left"></i>
-                <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.</span>
+                <span>„Невероятно изживяване! Храната беше превъзходна, обслужването – на ниво, а атмосферата – уютна и приятна. Опитахме няколко ястия от менюто и всяко едно беше истински кулинарен шедьовър. Определено ще се върнем отново!"</span>
                 <i class="bi bi-quote quote-icon-right"></i>
                 </p>
                 <img src="/assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                <h3>Saul Goodman</h3>
-                <h4>Ceo &amp; Founder</h4>
+                <h3>Добри Георгиев</h3>
+                <h4>Предприемач</h4>
               </div>
             </div><!-- End testimonial item -->
 
@@ -631,12 +682,12 @@
               <div class="testimonial-item">
                 <p>
                   <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.</span>
+                  <span>„Страхотно място за вечеря! Посетихме ресторанта с приятели и останахме очаровани. Всички ястия бяха пресни и изключително вкусни. Обслужването беше бързо и усмихнато. С удоволствие препоръчвам това място!"</span>
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
                 <img src="/assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                <h3>Sara Wilsson</h3>
-                <h4>Designer</h4>
+                <h3>Мария Томова</h3>
+                <h4>Дизайнер</h4>
               </div>
             </div><!-- End testimonial item -->
 
@@ -644,12 +695,12 @@
               <div class="testimonial-item">
                 <p>
                   <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.</span>
+                  <span>„Перфектен баланс между качество и цена! Менюто предлага богат избор от вкусни ястия, а цените са напълно разумни. Персоналът е любезен и внимателен, а обстановката е стилна и уютна. Отлично място за всякакви поводи!"</span>
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
                 <img src="/assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                <h3>Jena Karlis</h3>
-                <h4>Store Owner</h4>
+                <h3>Елена Христова</h3>
+                <h4>Собственик на магазин</h4>
               </div>
             </div><!-- End testimonial item -->
 
@@ -657,12 +708,12 @@
               <div class="testimonial-item">
                 <p>
                   <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.</span>
+                  <span>„Истинско кулинарно удоволствие! Останахме изключително доволни! Ястията бяха приготвени с внимание към детайла, а десертите – просто разкошни. Определено това е един от най-добрите ресторанти, които сме посещавали!"</span>
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
                 <img src="/assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                <h3>Matt Brandon</h3>
-                <h4>Freelancer</h4>
+                <h3>Йоан Димитров</h3>
+                <h4>Студент</h4>
               </div>
             </div><!-- End testimonial item -->
 
@@ -670,12 +721,12 @@
               <div class="testimonial-item">
                 <p>
                   <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.</span>
+                  <span>„Прекрасно обслужване и невероятна кухня! Още с влизането ни посрещнаха с усмивка. Обслужването беше безупречно, а храната – превъзходна. Особено впечатлени останахме от специалитетите на шеф-готвача. Ще се върнем отново!"</span>
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
                 <img src="/assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                <h3>John Larson</h3>
-                <h4>Entrepreneur</h4>
+                <h3>Виктор Петров</h3>
+                <h4>Компютърен специалист</h4>
               </div>
             </div><!-- End testimonial item -->
 
@@ -693,7 +744,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Gallery</h2>
-        <p>Some photos from Our Restaurant</p>
+        <p>Малко снимки от нашия ресторант</p>
       </div><!-- End Section Title -->
 
       <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
@@ -830,8 +881,8 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Contact</h2>
-        <p>Contact Us</p>
+        <h2>Контакти</h2>
+        <p>Свържете се с нас</p>
       </div><!-- End Section Title -->
 
       <div class="mb-5" data-aos="fade-up" data-aos-delay="200">
@@ -846,7 +897,7 @@
             <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
               <i class="bi bi-geo-alt flex-shrink-0"></i>
               <div>
-                <h3>Location</h3>
+                <h3>Намираме се на</h3>
                 <p>120, Александровска, Бургас, 8000</p>
               </div>
             </div><!-- End Info Item -->
@@ -854,15 +905,15 @@
             <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
               <i class="bi bi-telephone flex-shrink-0"></i>
               <div>
-                <h3>Open Hours</h3>
-                <p>Monday-Sуnday:<br>11:00 AM - 2300 PM</p>
+                <h3>Работно време</h3>
+                <p>Понеделник-Неделя:<br>11:00 - 23:00</p>
               </div>
             </div><!-- End Info Item -->
 
             <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
               <i class="bi bi-telephone flex-shrink-0"></i>
               <div>
-                <h3>Call Us</h3>
+                <h3>Обадете ни се</h3>
                 <p>+358 888 88 88 88</p>
               </div>
             </div><!-- End Info Item -->
@@ -870,8 +921,8 @@
             <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
               <i class="bi bi-envelope flex-shrink-0"></i>
               <div>
-                <h3>Email Us</h3>
-                <p>info@example.com</p>
+                <h3>Пишете ни</h3>
+                <p></p>
               </div>
             </div><!-- End Info Item -->
 
@@ -923,24 +974,27 @@
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
           <a href="index.html" class="logo d-flex align-items-center">
-            <span class="sitename">Restaurantly</span>
+            <span class="sitename">Вистоди</span>
           </a>
           <div class="footer-contact pt-3">
-            <p>A108 Adam Street</p>
-            <p>New York, NY 535022</p>
+            <p>Александровска 120</p>
+            <p>Бургас</p>
             <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-            <p><strong>Email:</strong> <span>info@example.com</span></p>
+            <p><strong>Email:</strong> <span>contact@example.com</span></p>
           </div>
+          <!--
           <div class="social-links d-flex mt-4">
             <a href=""><i class="bi bi-twitter-x"></i></a>
             <a href=""><i class="bi bi-facebook"></i></a>
             <a href=""><i class="bi bi-instagram"></i></a>
             <a href=""><i class="bi bi-linkedin"></i></a>
           </div>
+
         </div>
 
+
         <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Useful Links</h4>
+          <h4>Полезни връзки</h4>
           <ul>
             <li><a href="#">Home</a></li>
             <li><a href="#">About us</a></li>
@@ -978,14 +1032,15 @@
     <div class="container copyright text-center mt-4">
       <p>© <span>Copyright</span> <strong class="px-1 sitename">Restaurantly</strong> <span>All Rights Reserved</span></p>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
+         All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you've purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+
+
       </div>
     </div>
-
+    </div>
   </footer>
 
   <!-- Scroll Top -->
