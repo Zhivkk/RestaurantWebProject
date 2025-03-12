@@ -1,8 +1,9 @@
 Application for managing a restaurant and selling food online.
 
-The main database information is stored here: https://github.com/Zhivkk/RestaurantWebProjectResources . Includes information about the products offered, their ingredients and the relationship between them, as well as all used product photos. When the application is launched, the local database is synchronized with the information in github. The user database is local (M) and is not synchronized.
+The main database information is stored here: https://github.com/Zhivkk/RestaurantWebProjectResources . Includes information about the products offered, their ingredients and the relationship between them, as well as all used product photos. When the application is launched, the local database is synchronized with the information in github. The user database is local (MySQL) and is not synchronized.
 
-1. Registration and login modules - upon registration, the user role is automatically assigned. After logging in, according to the role, users are redirected to different pages to which they have access.
+Registration and login modules - upon registration, the user role is automatically assigned. After logging in, according to the role, users are redirected to different pages to which they have access.
+
 2. The administrator can change the roles of users
 3. After logging in, the user is redirected to different functionalities, depending on the user's role
 4. User - redirects to information about the restaurant and menu. Functionalities have been developed for a detailed product preview and adding to the cart the products they want to purchase. After completing the order - the cart is sent for preparation by user-chef.
