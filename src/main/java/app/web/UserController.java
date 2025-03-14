@@ -19,39 +19,5 @@ import java.util.UUID;
 @RequestMapping("/users")
 public class UserController {
 
-    private final UserService userService;
-
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
-
-    @GetMapping("/{id}/profile")
-    public ModelAndView getProfileMenu(@PathVariable UUID id) {
-        //@PathVariable указва, че променливата идва от /{id}/profile - {id}
-        User user = userService.getById(id);
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("edit-profile");
-        modelAndView.addObject("user", user);
-        modelAndView.addObject("userEditRequest", userService.mapUserToUserEditRequest(user));
-
-        return modelAndView;
-
-    }
-
-    @PutMapping("/{id}/profile")
-    public ModelAndView updateUserProfile(@PathVariable UUID id, @Valid UserEditRequest userEditRequest, BindingResult bindingResult) {
-
-        if (bindingResult.hasErrors()) {
-            User user = userService.getById(id);
-            ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("edit-profile");
-            modelAndView.addObject("user", user);
-            modelAndView.addObject("userEditRequest", userEditRequest);
-            return modelAndView;
-        }
-
-        userService.editUserDetails(id, userEditRequest);
-
-        return new ModelAndView("redirect:/home");
-    }
+    
 }
